@@ -89,7 +89,26 @@ phone =prompt('Enter Phone number ');
 
 shopdetails();
 
+function additem(){
+var itemname;
+var rate;
+itemname =prompt('Enter item name ');
+rate =prompt('Enter rate ');
+// 1. Create the button
+var button = document.createElement("button");
+button.innerHTML = itemname;
 
+// 2. Append somewhere
+var body = document.getElementsByClassName("additemhtml")[0];
+body.appendChild(button);
+
+// 3. Add event handler
+button.addEventListener ("click", function() {
+  alert("did something");
+});
+
+
+}
 </script>
 
 
@@ -195,7 +214,10 @@ border: solid black 2px;
 
 
 }
-
+.header
+{
+background-color: lightblue
+}
 
 .calculator
 
@@ -213,15 +235,20 @@ float:left;
 
 
 {
-
+border-style: solid;
 
 float:left;
 
 
 }
 
+div
+{
+padding-top:15px;
 
-.additem
+
+}
+.additemhtml
 
 
 {
@@ -275,7 +302,6 @@ width:100%
 
 }
 
-
 </style>
 
 
@@ -289,7 +315,14 @@ width:100%
 <body>
 
 
-<div class="calculator">
+<div class="header" >
+<h1 align="center">SOFTBILL</h1>
+</div>
+<div class="moving" >
+
+<marquee bgcolor="honeydew">This project is made by BISHNU, MANJIT, RISIKESH, SAPTARSHI, SHWETANK.       CONTACT US:-softbillhelp@gmail.com</marquee>
+</div>
+<div class="calculator" >
 
 
 <div class = title ><b> CALCULATOR </b></div>
@@ -412,10 +445,10 @@ hello
 </div>
 
 
-<div class="additem">
+<div class="additemhtml">
 
 
-bishnu
+<input type="button" value="ADD ITEM" onclick="additem()"/>
 
 
 </div>
