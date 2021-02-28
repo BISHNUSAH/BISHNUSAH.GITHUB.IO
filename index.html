@@ -14,9 +14,6 @@
 
 
 <script>
-
-
-
 var shopname;
 
 
@@ -25,10 +22,42 @@ var address;
 
 var phone;
 
+  function printdate(){
+        var today = new Date(); 
+        
+        var dd = today.getDate(); 
+        var mm = today.getMonth() + 1; 
+  
+        var yyyy = today.getFullYear(); 
+        if (dd < 10) { 
+            dd = '0' + dd; 
+        } 
+        if (mm < 10) { 
+            mm = '0' + mm; 
+        } 
+        var date = dd + '/' + mm + '/' + yyyy; 
+  
+
+     document.getElementById("date").innerHTML =date ;
+    var hh=today.getHours();
+    if (hh < 10) { 
+            hh = '0' + hh;} 
+    var mm=today.getMinutes();
+   if (mm < 10) { 
+            mm = '0' + mm; }
+    var ss=today.getSeconds();
+   if (ss < 10) { 
+            ss = '0' + ss; }
+    var time = hh + ':' + mm + ':' + ss;
+   document.getElementById("time").innerHTML =time ;
+
+ }
+
 
 
 function shopdetails(){
 
+printdate();
 
 
 
@@ -242,7 +271,6 @@ float:left;
 
 div
 {
-padding-top:10px;
 
 
 }
@@ -317,7 +345,7 @@ width:100%
 <!-- body begins -->
 
 
-<body>
+<body onclick="printdate()">
 
 
 <div class="header" >
@@ -325,7 +353,7 @@ width:100%
 </div>
 <div class="moving" >
 
-<marquee bgcolor="honeydew">This project is made by BISHNU, MANJIT, RISIKESH, SAPTARSHI, SHWETANK.       CONTACT US:-softbillhelp@gmail.com</marquee>
+<marquee bgcolor="honeydew">This project is made by BISHNU, MANJIT, RISHIKESH, SAPTARSHI, SHWETANK.       CONTACT US:-softbillhelp@gmail.com</marquee>
 </div>
 <div class="calculator" >
 
@@ -455,8 +483,8 @@ width:100%
 
 <td>Bill Number </td>
 <td><textarea id="bn">000000</textarea></td>
-<td id ="date">13/07/2000</td>
-<td id="time">20:23:56</td>
+<td id="date">13/07/2000</td>
+<td id="time" onclick="printdate()">20:23:56</td>
 </tr>
 </table>
 <table>
@@ -473,14 +501,19 @@ width:100%
 <div id="thirdline">
 <table  frame="void">
 <tr>
-<th>SL</th>
+<td> </td>
 <th>PARTICULARS</th>
 <th>RATE</th>
 <th>QUANTITY</th>
 <th>AMOUNT</th>
 </tr>
 <tr class="itemrow">
-<td></td>
+
+<td class="removerow" title="Remove row" style="background-color:red">X</td>
+<td>ITEM NAME</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
 </tr>
 </table>
 </div>
@@ -490,6 +523,7 @@ width:100%
 
 
 <div class="additemhtml">
+
 
 
 <input type="button" value="ADD ITEM" onclick="additem()"/>
