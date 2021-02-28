@@ -1,0 +1,537 @@
+
+
+
+<html>
+
+
+<head>
+
+
+<title>Softbill</title>
+
+
+</head>
+
+
+<script>
+var shopname;
+
+
+var address;
+
+
+var phone;
+
+  function printdate(){
+        var today = new Date(); 
+        
+        var dd = today.getDate(); 
+        var mm = today.getMonth() + 1; 
+  
+        var yyyy = today.getFullYear(); 
+        if (dd < 10) { 
+            dd = '0' + dd; 
+        } 
+        if (mm < 10) { 
+            mm = '0' + mm; 
+        } 
+        var date = dd + '/' + mm + '/' + yyyy; 
+  
+
+     document.getElementById("date").innerHTML =date ;
+    var hh=today.getHours();
+    if (hh < 10) { 
+            hh = '0' + hh;} 
+    var mm=today.getMinutes();
+   if (mm < 10) { 
+            mm = '0' + mm; }
+    var ss=today.getSeconds();
+   if (ss < 10) { 
+            ss = '0' + ss; }
+    var time = hh + ':' + mm + ':' + ss;
+   document.getElementById("time").innerHTML =time ;
+
+ }
+
+
+
+function shopdetails(){
+
+printdate();
+
+
+
+
+
+shopname =prompt('Enter Shopname ');
+
+
+
+
+
+
+while(shopname == null){
+
+
+shopname =prompt('Enter Shopname ');
+
+
+}
+
+
+address=prompt('Enter Address');
+
+
+
+
+
+
+while(address == null){
+
+
+address =prompt('Enter Address ');
+
+
+}
+
+
+phone=prompt('Enter Phone number');
+
+
+
+
+
+
+while(phone == null){
+
+
+phone =prompt('Enter Phone number ');
+
+
+}
+
+
+document.getElementById("shopname").innerHTML =shopname ;
+
+document.getElementById("address").innerHTML =address ;
+document.getElementById("phone").innerHTML =phone ;
+
+}
+
+
+
+
+function additem(){
+var itemname;
+var rate;
+itemname =prompt('Enter item name ');
+rate =prompt('Enter rate ');
+// 1. Create the button
+var button = document.createElement("button");
+button.innerHTML = itemname;
+
+// 2. Append somewhere
+var body = document.getElementsByClassName("additemhtml")[0];
+body.appendChild(button);
+
+// 3. Add event handler
+button.addEventListener ("click", function() {
+  alert("did something");
+});
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//calculator functions
+//function that display value 
+
+
+function dis(val)
+
+
+{
+
+
+document.getElementById("result").value+=val
+
+
+}
+
+
+
+
+
+
+//function that evaluates the digit and return result
+
+
+function solve()
+
+
+{
+
+
+let x = document.getElementById("result").value
+
+
+let y = eval(x)
+
+
+document.getElementById("result").value = y
+
+
+}
+
+
+
+
+
+
+//function that clear the display
+
+
+function clr()
+
+
+{
+
+
+document.getElementById("result").value = ""
+
+
+}
+
+
+</script>
+
+
+<!-- for styling -->
+
+
+<style>
+
+
+.title{
+
+
+margin-bottom: 20px;
+
+
+text-align:center;
+
+
+width: 212px;
+
+
+color:Black;
+
+
+border: solid black 2px;
+
+
+}
+.header
+{
+background-color: lightblue
+}
+
+.calculator
+
+
+{
+
+
+float:left;
+
+
+}
+
+
+.bill
+
+
+{
+border-style: solid;
+
+float:left;
+
+
+}
+
+div
+{
+
+
+}
+.firstline
+{
+
+
+
+
+}
+.additemhtml
+
+
+{
+
+
+float:left;
+
+
+}
+
+
+input[type="button"]
+
+
+{
+
+
+background-color:skyblue;
+
+
+color: black;
+
+
+border: solid black 2px;
+
+
+width:100%
+
+
+}
+
+
+
+
+
+
+input[type="text"]
+
+
+{
+
+
+background-color:white;
+
+
+border: solid black 2px;
+
+
+width:100%
+
+
+}
+
+</style>
+
+
+
+
+
+
+<!-- body begins -->
+
+
+<body onclick="printdate()">
+
+
+<div class="header" >
+<h1 align="center">SOFTBILL</h1>
+</div>
+<div class="moving" >
+
+<marquee bgcolor="honeydew">This project is made by BISHNU, MANJIT, RISHIKESH, SAPTARSHI, SHWETANK.       CONTACT US:-softbillhelp@gmail.com</marquee>
+</div>
+<div class="calculator" >
+
+
+<div class = title ><b> CALCULATOR </b></div>
+
+
+<table border="1">
+
+
+<tr>
+
+
+<td colspan="3"><input type="text" id="result"/></td>
+
+
+<!-- clr() function will call clr to clear RESULT -->
+
+
+<td><input type="button" value="c" onclick="clr()"/> </td>
+
+
+</tr>
+
+
+<tr>
+
+
+<!-- create button -->
+
+
+<!-- dis("1") will call function dis to display value -->
+
+
+<td><input type="button" value="7" onclick="dis('7')"/> </td>
+
+
+<td><input type="button" value="8" onclick="dis('8')"/> </td>
+
+
+<td><input type="button" value="9" onclick="dis('9')"/> </td>
+
+
+<td><input type="button" value="/" onclick="dis('/')"/> </td>
+
+
+</tr>
+
+
+<tr>
+
+
+<td><input type="button" value="4" onclick="dis('4')"/> </td>
+
+
+<td><input type="button" value="5" onclick="dis('5')"/> </td>
+
+
+<td><input type="button" value="6" onclick="dis('6')"/> </td>
+
+
+<td><input type="button" value="*" onclick="dis('*')"/> </td>
+
+
+</tr>
+
+
+<tr>
+
+
+<td><input type="button" value="1" onclick="dis('1')"/> </td>
+
+
+<td><input type="button" value="2" onclick="dis('2')"/> </td>
+
+
+<td><input type="button" value="3" onclick="dis('3')"/> </td>
+
+
+<td><input type="button" value="+" onclick="dis('+')"/> </td>
+
+
+</tr>
+
+
+<tr>
+
+
+<td><input type="button" value="." onclick="dis('.')"/> </td>
+
+
+<td><input type="button" value="0" onclick="dis('0')"/> </td>
+
+
+<!-- solve function call function solve to evaluate value -->
+
+
+<td><input type="button" value="=" onclick="solve()"/> </td>
+
+
+<td><input type="button" value="-" onclick="dis('-')"/> </td>
+
+
+</tr>
+
+
+</table>
+
+
+</div>
+
+
+<div class="bill">
+<input type="button" value="START" onclick="shopdetails()"/> 
+
+<div class="firstline">
+<h2 id="shopname" align="center">Shop name</h1>
+<h3 id="address" align="center">Address</h2>
+<h4 id="phone" align="center">Phone Number</h3>
+
+</div>
+
+<hr style="border: 1px dashed black;" />
+<div class="secondline">
+<table>
+<tr>
+
+<td>Bill Number </td>
+<td><textarea id="bn">000000</textarea></td>
+<td id="date">13/07/2000</td>
+<td id="time" onclick="printdate()">20:23:56</td>
+</tr>
+</table>
+<table>
+<hr style="border: 1px dashed black;" />
+<table>
+<tr>
+<td>Customer Name </td>
+<td><textarea id="cn">Bishnu sah</textarea></td>
+</tr>
+</table>
+</div>
+
+<hr style="border: 1px dashed black;" />
+<div id="thirdline">
+<table  frame="void">
+<tr>
+<td> </td>
+<th>PARTICULARS</th>
+<th>RATE</th>
+<th>QUANTITY</th>
+<th>AMOUNT</th>
+</tr>
+<tr class="itemrow">
+
+<td class="removerow" title="Remove row" style="background-color:red">X</td>
+<td>ITEM NAME</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</table>
+</div>
+
+
+</div>
+
+
+<div class="additemhtml">
+
+
+
+<input type="button" value="ADD ITEM" onclick="additem()"/>
+
+
+</div>
+
+
+</html>
+
+
