@@ -53,11 +53,34 @@ var phone;
 
  }
 
+function printsubtotal(){
+var x=document.getElementById("amount").value;
+document.getElementById("subtotal").value=x;
+}
 
+
+function printamount()
+{
+var x=document.querySelectorAll("#rate");
+var y=document.querySelectorAll("#quantity");
+var z=document.querySelectorAll("#amount");
+
+var p=0;
+ 
+  for(var i=0;i<x.length;i++)
+   {
+   p= Number(x[i].innerHTML)*Number(y[i].innerHTML)
+    
+    z[i].innerHTML=5;
+   }
+  
+  
+
+}
 
 function shopdetails(){
 
-printdate();
+
 
 
 
@@ -142,8 +165,27 @@ button.addEventListener ("click", function() {
 
 }
 
+function deleterow(t){
+var i = t.parentNode.parentNode.rowIndex;
+  document.getElementById("itemtable").deleteRow(i);
 
+}
 
+function addarow(){
+// insert new row.
+var newrow = document.getElementById("itemtable").insertRow();
+
+var delrow=newrow.insertCell(0);
+var itemname=newrow.insertCell(1);
+var rate=newrow.insertCell(2);
+var quantity=newrow.insertCell(3);
+var amount=newrow.insertCell(4);
+delrow.innerHTML='<button onclick="deleterow(this)">X</button>';
+itemname.innerHTML="<textarea id='itemname'>ITEM NAME</textarea>";
+rate.innerHTML="<textarea id='rate' >0</textarea>";
+quantity.innerHTML="<textarea id='quantity' >0</textarea>";
+amount.innerHTML="<textarea id='amount'>0</textarea>";
+}
 
 
 
@@ -473,10 +515,10 @@ width:100%
 <h2 id="shopname" align="center">Shop name</h1>
 <h3 id="address" align="center">Address</h2>
 <h4 id="phone" align="center">Phone Number</h3>
-
+<div align="center"><b>GSTIN</b><textarea id="gst">0</textarea></div>
 </div>
 
-<hr style="border: 1px dashed black;" />
+<hr>
 <div class="secondline">
 <table>
 <tr>
@@ -488,7 +530,7 @@ width:100%
 </tr>
 </table>
 <table>
-<hr style="border: 1px dashed black;" />
+<hr>
 <table>
 <tr>
 <td>Customer Name </td>
@@ -497,25 +539,69 @@ width:100%
 </table>
 </div>
 
-<hr style="border: 1px dashed black;" />
+<hr>
 <div id="thirdline">
-<table  frame="void">
+<table  frame="void" id="itemtable">
 <tr>
 <td> </td>
+
 <th>PARTICULARS</th>
 <th>RATE</th>
 <th>QUANTITY</th>
 <th>AMOUNT</th>
 </tr>
 <tr class="itemrow">
+<td></td>
+<td><textarea id="itemname">ITEM NAME</textarea></td>
+<td><textarea id="rate" >0</textarea></td>
+<td><textarea id="quantity" >0</textarea></td>
+<td><textarea id="amount" >0</textarea></td>
+</tr>
 
-<td class="removerow" title="Remove row" style="background-color:red">X</td>
-<td>ITEM NAME</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
+
+
+
+
+
+
+</table>
+
+<button type="button" onclick="addarow()" autofocus>Add a row</button>
+
+
+<hr>
+</div>
+<div id="fourthline" align="right">
+<table>
+<tr >
+
+<td><button type="button" id ="print_subtotal" onclick="printamount()">Subtotal</td>
+<td><textarea id="subtotal" >0</textarea></td>
+</tr>
+<tr>
+<td><button type="button" id ="addgst" onclick="printgst()">Add GST(%)</td>
+<td><textarea id="gst%" title="INPUT GST%">18</textarea></td>
+
+
+<td><button type="button" id ="gstvalue">GST value</td>
+<td><textarea id="gstvalue">0</textarea></td>
+</tr>
+<tr >
+<td><button type="button" id ="total">Total</td>
+<td ><textarea id="totalvalue">0</textarea></td>
 </tr>
 </table>
+</div>
+
+<hr>
+<div align="center">
+*********THANK YOU VISIT AGIAN*********
+</div>
+<div >
+TERMS AND CONDITIONS
+</div>
+<diV>
+<textarea style="border:none"></textarea>
 </div>
 
 
@@ -526,7 +612,7 @@ width:100%
 
 
 
-<input type="button" value="ADD ITEM" onclick="additem()"/>
+<input type="button" value="ADD ITEM" onclick="additem()" />
 
 
 </div>
