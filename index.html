@@ -54,8 +54,13 @@ var phone;
  }
 
 function printsubtotal(){
-var x=document.getElementById("amount").value;
-document.getElementById("subtotal").value=x;
+var x=document.querySelectorAll("#amount");
+var sum=0;
+for(var i=0;i<x.length;i++)
+ {
+  sum=sum+Number(x[i].value);
+ }
+document.getElementById("subtotal").value=sum;
 }
 
 
@@ -69,15 +74,26 @@ var p=0;
  
   for(var i=0;i<x.length;i++)
    {
-   p= Number(x[i].innerHTML)*Number(y[i].innerHTML)
+   p= Number(x[i].value)*Number(y[i].value);
     
-    z[i].innerHTML=5;
+    z[i].value=p;
    }
   
-  
+ }
+function printgst(){
 
+var gstpercent=Number(document.getElementById("gstpercent").value);
+var subtotal=Number(document.getElementById("subtotal").value);
+var calres=(gstpercent*subtotal)/100;
+document.getElementById("gstvalue").value=calres;
 }
 
+function printtotal(){
+var subtotal=Number(document.getElementById("subtotal").value);
+var gstvalue=Number(document.getElementById("gstvalue").value);
+var total=subtotal+gstvalue;
+document.getElementById("totalvalue").value=total;
+}
 function shopdetails(){
 
 
@@ -387,7 +403,7 @@ width:100%
 <!-- body begins -->
 
 
-<body onclick="printdate()">
+<body onclick="printdate();printamount();printsubtotal();printgst();printtotal();">
 
 
 <div class="header" >
@@ -395,7 +411,7 @@ width:100%
 </div>
 <div class="moving" >
 
-<marquee bgcolor="honeydew">This project is made by BISHNU, MANJIT, RISHIKESH, SAPTARSHI, SHWETANK.       CONTACT US:-softbillhelp@gmail.com</marquee>
+<marquee bgcolor="honeydew">This project is made by BISHNU, MANJIT, RISHIKESH, SAPTARSHI, SHWETANK.           CONTACT US:-softbillhelp@gmail.com</marquee>
 </div>
 <div class="calculator" >
 
@@ -510,12 +526,12 @@ width:100%
 
 <div class="bill">
 <input type="button" value="START" onclick="shopdetails()"/> 
-
+<div id="print">
 <div class="firstline">
 <h2 id="shopname" align="center">Shop name</h1>
 <h3 id="address" align="center">Address</h2>
 <h4 id="phone" align="center">Phone Number</h3>
-<div align="center"><b>GSTIN</b><textarea id="gst">0</textarea></div>
+<div align="center"><b>GSTIN</b><textarea id="gstin">0</textarea></div>
 </div>
 
 <hr>
@@ -575,20 +591,20 @@ width:100%
 <table>
 <tr >
 
-<td><button type="button" id ="print_subtotal" onclick="printamount()">Subtotal</td>
-<td><textarea id="subtotal" >0</textarea></td>
+<td><button type="button" id ="print_subtotal" onclick="printamount();printsubtotal();">Subtotal</td>
+<td><textarea id="subtotal" onclick="printsubtotal()" disabled>0</textarea></td>
 </tr>
 <tr>
-<td><button type="button" id ="addgst" onclick="printgst()">Add GST(%)</td>
-<td><textarea id="gst%" title="INPUT GST%">18</textarea></td>
+<td><button type="button" id ="addgst" onclick="printsubtotal();printgst();">Add GST(%)</td>
+<td><textarea id="gstpercent" >18</textarea></td>
 
 
-<td><button type="button" id ="gstvalue">GST value</td>
-<td><textarea id="gstvalue">0</textarea></td>
+<td><button type="button" disabled>GST value</td>
+<td><textarea id="gstvalue" disabled>0</textarea></td>
 </tr>
 <tr >
-<td><button type="button" id ="total">Total</td>
-<td ><textarea id="totalvalue">0</textarea></td>
+<td><button type="button" id ="total" onclick="printamount();printsubtotal();printgst();printtotal();">Total</td>
+<td ><textarea id="totalvalue" disabled>0</textarea></td>
 </tr>
 </table>
 </div>
@@ -601,10 +617,12 @@ width:100%
 TERMS AND CONDITIONS
 </div>
 <diV>
-<textarea style="border:none"></textarea>
+<textarea style="border:none">****Editable****</textarea>
 </div>
-
-
+</div>
+<div>
+<input type="button" value="PRINT BILL" onclick="printbill()" />
+</div>
 </div>
 
 
@@ -616,7 +634,7 @@ TERMS AND CONDITIONS
 
 
 </div>
-
+</body>
 
 </html>
 
