@@ -132,6 +132,26 @@ button.addEventListener ("click", function() {
     quantity.innerHTML = "<textarea id='quantity' >0</textarea>";
     amount.innerHTML = "<textarea id='amount'>0</textarea>";
   }
+ function deleteallrow(){
+ document.getElementById("itemtable").innerHTML=`<table frame="void" id="itemtable">
+          <tr>
+            <td> </td>
+
+            <th><div contenteditable="true">PARTICULARS</div></th>
+            <th><div contenteditable="true">RATE</div></th>
+            <th><div contenteditable="true">QUANTITY</div></th>
+            <th><div contenteditable="true">AMOUNT</div></th>
+          </tr>
+          <tr class="itemrow">
+            <td></td>
+            <td><textarea id="itemname">ITEM NAME</textarea></td>
+            <td><textarea id="rate">0</textarea></td>
+            <td><textarea id="quantity">0</textarea></td>
+            <td><textarea id="amount">0</textarea></td>
+          </tr>`;
+
+       
+ }
   //calculator functions
   //function that display value 
   function dis(val) {
@@ -162,6 +182,7 @@ button.addEventListener ("click", function() {
    w.print();w.close();
    
   document.getElementById("update").innerHTML=orgdivcontents;
+  deleteallrow();
   }
 </script>
 
@@ -358,9 +379,11 @@ button.addEventListener ("click", function() {
         </table>
 
         <button type="button" onclick="addarow()" autofocus>Add a row</button>
+        <button type="button" onclick="deleteallrow()" >Delete all row</button>
 
-        <hr>
+        
       </div>
+      <hr>
       <div id="fourthline" align="right">
         <table>
           <tr>
