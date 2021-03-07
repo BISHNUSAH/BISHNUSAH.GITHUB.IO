@@ -1,172 +1,105 @@
-
-
-
 <html>
-
 
 <head>
 
-
-<title>Softbill</title>
-
+  <title>Softbill</title>
 
 </head>
 
-
 <script>
-var shopname;
-
-
-var address;
-
-
-var phone;
-
-  function printdate(){
-        var today = new Date(); 
-        
-        var dd = today.getDate(); 
-        var mm = today.getMonth() + 1; 
+  var shopname;
+  var address;
+  var phone;
   
-        var yyyy = today.getFullYear(); 
-        if (dd < 10) { 
-            dd = '0' + dd; 
-        } 
-        if (mm < 10) { 
-            mm = '0' + mm; 
-        } 
-        var date = dd + '/' + mm + '/' + yyyy; 
   
-
-     document.getElementById("date").innerHTML =date ;
-    var hh=today.getHours();
-    if (hh < 10) { 
-            hh = '0' + hh;} 
-    var mm=today.getMinutes();
-   if (mm < 10) { 
-            mm = '0' + mm; }
-    var ss=today.getSeconds();
-   if (ss < 10) { 
-            ss = '0' + ss; }
+  function printdate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+      dd = '0' + dd;
+    }
+    if (mm < 10) {
+      mm = '0' + mm;
+    }
+    var date = dd + '/' + mm + '/' + yyyy;
+    document.getElementById("date").innerHTML = date;
+    var hh = today.getHours();
+    if (hh < 10) {
+      hh = '0' + hh;
+    }
+    var mm = today.getMinutes();
+    if (mm < 10) {
+      mm = '0' + mm;
+    }
+    var ss = today.getSeconds();
+    if (ss < 10) {
+      ss = '0' + ss;
+    }
     var time = hh + ':' + mm + ':' + ss;
-   document.getElementById("time").innerHTML =time ;
+    document.getElementById("time").innerHTML = time;
+  }
 
- }
+  function printsubtotal() {
+    var x = document.querySelectorAll("#amount");
+    var sum = 0;
+    for (var i = 0; i < x.length; i++) {
+      sum = sum + Number(x[i].value);
+    }
+    document.getElementById("subtotal").value = sum;
+  }
 
-function printsubtotal(){
-var x=document.querySelectorAll("#amount");
-var sum=0;
-for(var i=0;i<x.length;i++)
- {
-  sum=sum+Number(x[i].value);
- }
-document.getElementById("subtotal").value=sum;
-}
+  function printamount() {
+    var x = document.querySelectorAll("#rate");
+    var y = document.querySelectorAll("#quantity");
+    var z = document.querySelectorAll("#amount");
+    var p = 0;
+    for (var i = 0; i < x.length; i++) {
+      p = Number(x[i].value) * Number(y[i].value);
+      z[i].value = p;
+    }
+  }
 
+  function printgst() {
+    var gstpercent = Number(document.getElementById("gstpercent").value);
+    var subtotal = Number(document.getElementById("subtotal").value);
+    var calres = (gstpercent * subtotal) / 100;
+    document.getElementById("gstvalue").value = calres;
+  }
 
-function printamount()
-{
-var x=document.querySelectorAll("#rate");
-var y=document.querySelectorAll("#quantity");
-var z=document.querySelectorAll("#amount");
+  function printtotal() {
+    var subtotal = Number(document.getElementById("subtotal").value);
+    var gstvalue = Number(document.getElementById("gstvalue").value);
+    var total = subtotal + gstvalue;
+    document.getElementById("totalvalue").value = total;
+  }
 
-var p=0;
- 
-  for(var i=0;i<x.length;i++)
-   {
-   p= Number(x[i].value)*Number(y[i].value);
-    
-    z[i].value=p;
-   }
-  
- }
-function printgst(){
+  function shopdetails() {
+    shopname = prompt('Enter Shopname ');
+    while (shopname == null) {
+      shopname = prompt('Enter Shopname ');
+    }
+    address = prompt('Enter Address');
+    while (address == null) {
+      address = prompt('Enter Address ');
+    }
+    phone = prompt('Enter Phone number');
+    while (phone == null) {
+      phone = prompt('Enter Phone number ');
+    }
+    document.getElementById("shopname").innerHTML = shopname;
+    document.getElementById("address").innerHTML = address;
+    document.getElementById("phone").innerHTML = phone;
+  }
 
-var gstpercent=Number(document.getElementById("gstpercent").value);
-var subtotal=Number(document.getElementById("subtotal").value);
-var calres=(gstpercent*subtotal)/100;
-document.getElementById("gstvalue").value=calres;
-}
-
-function printtotal(){
-var subtotal=Number(document.getElementById("subtotal").value);
-var gstvalue=Number(document.getElementById("gstvalue").value);
-var total=subtotal+gstvalue;
-document.getElementById("totalvalue").value=total;
-}
-function shopdetails(){
-
-
-
-
-
-
-
-shopname =prompt('Enter Shopname ');
-
-
-
-
-
-
-while(shopname == null){
-
-
-shopname =prompt('Enter Shopname ');
-
-
-}
-
-
-address=prompt('Enter Address');
-
-
-
-
-
-
-while(address == null){
-
-
-address =prompt('Enter Address ');
-
-
-}
-
-
-phone=prompt('Enter Phone number');
-
-
-
-
-
-
-while(phone == null){
-
-
-phone =prompt('Enter Phone number ');
-
-
-}
-
-
-document.getElementById("shopname").innerHTML =shopname ;
-
-document.getElementById("address").innerHTML =address ;
-document.getElementById("phone").innerHTML =phone ;
-
-}
-
-
-
-
-function additem(){
-var itemname;
-var rate;
-itemname =prompt('Enter item name ');
-rate =prompt('Enter rate ');
-// 1. Create the button
-var button = document.createElement("button");
+  function additem() {
+    var itemname;
+    var rate;
+    itemname = prompt('Enter item name ');
+    rate = prompt('Enter rate ');
+    // 1. Create the button
+   var button = document.createElement("button");
 button.innerHTML = itemname;
 
 // 2. Append somewhere
@@ -177,465 +110,295 @@ body.appendChild(button);
 button.addEventListener ("click", function() {
   alert("did something");
 });
+    
+  }
 
+  function deleterow(t) {
+    var i = t.parentNode.parentNode.rowIndex;
+    document.getElementById("itemtable").deleteRow(i);
+  }
 
-}
+  function addarow() {
+    // insert new row.
+    var newrow = document.getElementById("itemtable").insertRow();
+    var delrow = newrow.insertCell(0);
+    var itemname = newrow.insertCell(1);
+    var rate = newrow.insertCell(2);
+    var quantity = newrow.insertCell(3);
+    var amount = newrow.insertCell(4);
+    delrow.innerHTML = '<button onclick="deleterow(this)">X</button>';
+    itemname.innerHTML = "<textarea id='itemname'>ITEM NAME</textarea>";
+    rate.innerHTML = "<textarea id='rate' >0</textarea>";
+    quantity.innerHTML = "<textarea id='quantity' >0</textarea>";
+    amount.innerHTML = "<textarea id='amount'>0</textarea>";
+  }
+  //calculator functions
+  //function that display value 
+  function dis(val) {
+    document.getElementById("result").value += val;
+  }
+  //function that evaluates the digit and return result;
+  function solve() {
+    let x = document.getElementById("result").value;
+    let y = eval(x);
+    document.getElementById("result").value = y;
+  }
+  //function that clear the display
+  function clr() {
+    document.getElementById("result").value = "";
+  }
 
-function deleterow(t){
-var i = t.parentNode.parentNode.rowIndex;
-  document.getElementById("itemtable").deleteRow(i);
-
-}
-
-function addarow(){
-// insert new row.
-var newrow = document.getElementById("itemtable").insertRow();
-
-var delrow=newrow.insertCell(0);
-var itemname=newrow.insertCell(1);
-var rate=newrow.insertCell(2);
-var quantity=newrow.insertCell(3);
-var amount=newrow.insertCell(4);
-delrow.innerHTML='<button onclick="deleterow(this)">X</button>';
-itemname.innerHTML="<textarea id='itemname'>ITEM NAME</textarea>";
-rate.innerHTML="<textarea id='rate' >0</textarea>";
-quantity.innerHTML="<textarea id='quantity' >0</textarea>";
-amount.innerHTML="<textarea id='amount'>0</textarea>";
-}
-
-
-
-
-
-
-
-
-
-//calculator functions
-//function that display value 
-
-
-function dis(val)
-
-
-{
-
-
-document.getElementById("result").value+=val
-
-
-}
-
-
-
-
-
-
-//function that evaluates the digit and return result
-
-
-function solve()
-
-
-{
-
-
-let x = document.getElementById("result").value
-
-
-let y = eval(x)
-
-
-document.getElementById("result").value = y
-
-
-}
-
-
-
-
-
-
-//function that clear the display
-
-
-function clr()
-
-
-{
-
-
-document.getElementById("result").value = ""
-
-
-}
-
-
+  function printbill()
+  {
+  var orgdivcontents=document.getElementById("update").innerHTML;
+   var newcontents=document.getElementById("print");
+   var cln=newcontents.cloneNode(true);
+   var w=window.open('','');
+   
+	 
+   w.document.body.append(cln); 
+  
+  
+   w.print();w.close();
+   
+  document.getElementById("update").innerHTML=orgdivcontents;
+  }
 </script>
-
 
 <!-- for styling -->
 
-
 <style>
-
-
-.title{
-
-
-margin-bottom: 20px;
-
-
-text-align:center;
-
-
-width: 212px;
-
-
-color:Black;
-
-
-border: solid black 2px;
-
-
-}
-.header
-{
-background-color: lightblue
-}
-
-.calculator
-
-
-{
-
-
-float:left;
-
-
-}
-
-
-.bill
-
-
-{
-border-style: solid;
-
-float:left;
-
-
-}
-
-div
-{
-
-
-}
-.firstline
-{
-
-
-
-
-}
-.additemhtml
-
-
-{
-
-
-float:left;
-
-
-}
-
-
-input[type="button"]
-
-
-{
-
-
-background-color:skyblue;
-
-
-color: black;
-
-
-border: solid black 2px;
-
-
-width:100%
-
-
-}
-
-
-
-
-
-
-input[type="text"]
-
-
-{
-
-
-background-color:white;
-
-
-border: solid black 2px;
-
-
-width:100%
-
-
-}
-
+  .title {
+    margin-bottom: 20px;
+    text-align: center;
+    width: 212px;
+    color: Black;
+    border: solid black 2px;
+  }
+
+  .header {
+    background-color: lightblue;
+  }
+
+ 
+
+  .calculator {
+    float: left;
+  }
+
+  .bill {
+    border-style: solid;
+    float: left;
+  }
+
+ 
+
+ 
+
+  
+
+  input[type="button"] {
+    background-color: skyblue;
+    color: black;
+    border: solid black 2px;
+    width: 100%
+  }
+
+  input[type="text"] {
+    background-color: white;
+    border: solid black 2px;
+    width: 100%
+  }
 </style>
-
-
-
-
-
 
 <!-- body begins -->
 
-
 <body onclick="printdate();printamount();printsubtotal();printgst();printtotal();">
 
+  <div class="header">
+    <h1 align="center">SOFTBILL</h1>
+  </div>
+  <div class="moving">
 
-<div class="header" >
-<h1 align="center">SOFTBILL</h1>
+    <marquee bgcolor="honeydew">This project is made by BISHNU, MANJIT, RISHIKESH, SAPTARSHI, SHWETANK. CONTACT US:-softbillhelp@gmail.com</marquee>
+  </div>
+  
+  <div class="calculator">
+
+    <div class=title><b> CALCULATOR </b></div>
+
+    <table border="1">
+
+      <tr>
+
+        <td colspan="3"><input type="text" id="result" /></td>
+
+        <!-- clr() function will call clr to clear RESULT -->
+
+        <td><input type="button" value="c" onclick="clr()" /> </td>
+
+      </tr>
+
+      <tr>
+
+        <!-- create button -->
+
+        <!-- dis("1") will call function dis to display value -->
+
+        <td><input type="button" value="7" onclick="dis('7')" /> </td>
+
+        <td><input type="button" value="8" onclick="dis('8')" /> </td>
+
+        <td><input type="button" value="9" onclick="dis('9')" /> </td>
+
+        <td><input type="button" value="/" onclick="dis('/')" /> </td>
+
+      </tr>
+
+      <tr>
+
+        <td><input type="button" value="4" onclick="dis('4')" /> </td>
+
+        <td><input type="button" value="5" onclick="dis('5')" /> </td>
+
+        <td><input type="button" value="6" onclick="dis('6')" /> </td>
+
+        <td><input type="button" value="*" onclick="dis('*')" /> </td>
+
+      </tr>
+
+      <tr>
+
+        <td><input type="button" value="1" onclick="dis('1')" /> </td>
+
+        <td><input type="button" value="2" onclick="dis('2')" /> </td>
+
+        <td><input type="button" value="3" onclick="dis('3')" /> </td>
+
+        <td><input type="button" value="+" onclick="dis('+')" /> </td>
+
+      </tr>
+
+      <tr>
+
+        <td><input type="button" value="." onclick="dis('.')" /> </td>
+
+        <td><input type="button" value="0" onclick="dis('0')" /> </td>
+
+        <!-- solve function call function solve to evaluate value -->
+
+        <td><input type="button" value="=" onclick="solve()" /> </td>
+
+        <td><input type="button" value="-" onclick="dis('-')" /> </td>
+
+      </tr>
+
+    </table>
+
+  
+  <div class="additemhtml">
+
+    <input type="button" value="ADD ITEM" onclick="additem()" />
+
+  </div>
+  </div>
+  <div class="bill">
+    <input type="button" value="START" onclick="shopdetails()" />
+    <div id="print">
+      <div class="firstline">
+        <h2 id="shopname" align="center">Shop name</h1>
+          <h3 id="address" align="center">Address
+        </h2>
+        <h4 id="phone" align="center">Phone Number</h3>
+          <div align="center">
+           <label for="gstin"><b>GSTIN</b></label>
+            <textarea id="gstin">0</textarea></div>
+      </div>
+<div id='update'>
+      <hr>
+      <div class="secondline">
+        <table>
+          <tr>
+
+            <td>Bill Number </td>
+            <td><textarea id="bn">000000</textarea></td>
+            <td id="date">13/07/2000</td>
+            <td id="time" onclick="printdate()">20:23:56</td>
+          </tr>
+        </table>
+        <table>
+          <hr>
+          <table>
+            <tr>
+              <td>Customer Name </td>
+              <td><textarea id="cn">Bishnu sah</textarea></td>
+            </tr>
+          </table>
+      </div>
+
+      <hr>
+      <div id="thirdline">
+        <table frame="void" id="itemtable">
+          <tr>
+            <td> </td>
+
+            <th><div contenteditable="true">PARTICULARS</div></th>
+            <th><div contenteditable="true">RATE</div></th>
+            <th><div contenteditable="true">QUANTITY</div></th>
+            <th><div contenteditable="true">AMOUNT</div></th>
+          </tr>
+          <tr class="itemrow">
+            <td></td>
+            <td><textarea id="itemname">ITEM NAME</textarea></td>
+            <td><textarea id="rate">0</textarea></td>
+            <td><textarea id="quantity">0</textarea></td>
+            <td><textarea id="amount">0</textarea></td>
+          </tr>
+
+        </table>
+
+        <button type="button" onclick="addarow()" autofocus>Add a row</button>
+
+        <hr>
+      </div>
+      <div id="fourthline" align="right">
+        <table>
+          <tr>
+
+            <td><button type="button" id="print_subtotal" onclick="printamount();printsubtotal();">Subtotal</td>
+            <td><textarea id="subtotal" onclick="printsubtotal()" disabled>0</textarea></td>
+          </tr>
+          <tr>
+            <td><button type="button" id="addgst" onclick="printsubtotal();printgst();">Add GST(%)</td>
+            <td><textarea id="gstpercent">0</textarea></td>
+
+            <td><button type="button" disabled>GST value</td>
+            <td><textarea id="gstvalue" disabled>0</textarea></td>
+          </tr>
+          <tr>
+            <td><button type="button" id="total" onclick="printamount();printsubtotal();printgst();printtotal();">Total</td>
+            <td><textarea id="totalvalue" disabled>0</textarea></td>
+          </tr>
+        </table>
+      </div>
 </div>
-<div class="moving" >
-
-<marquee bgcolor="honeydew">This project is made by BISHNU, MANJIT, RISHIKESH, SAPTARSHI, SHWETANK.           CONTACT US:-softbillhelp@gmail.com</marquee>
-</div>
-<div class="calculator" >
-
-
-<div class = title ><b> CALCULATOR </b></div>
-
-
-<table border="1">
-
-
-<tr>
-
-
-<td colspan="3"><input type="text" id="result"/></td>
-
-
-<!-- clr() function will call clr to clear RESULT -->
-
-
-<td><input type="button" value="c" onclick="clr()"/> </td>
-
-
-</tr>
-
-
-<tr>
-
-
-<!-- create button -->
-
-
-<!-- dis("1") will call function dis to display value -->
-
-
-<td><input type="button" value="7" onclick="dis('7')"/> </td>
-
-
-<td><input type="button" value="8" onclick="dis('8')"/> </td>
-
-
-<td><input type="button" value="9" onclick="dis('9')"/> </td>
-
-
-<td><input type="button" value="/" onclick="dis('/')"/> </td>
-
-
-</tr>
-
-
-<tr>
-
-
-<td><input type="button" value="4" onclick="dis('4')"/> </td>
-
-
-<td><input type="button" value="5" onclick="dis('5')"/> </td>
-
-
-<td><input type="button" value="6" onclick="dis('6')"/> </td>
-
-
-<td><input type="button" value="*" onclick="dis('*')"/> </td>
-
-
-</tr>
-
-
-<tr>
-
-
-<td><input type="button" value="1" onclick="dis('1')"/> </td>
-
-
-<td><input type="button" value="2" onclick="dis('2')"/> </td>
-
-
-<td><input type="button" value="3" onclick="dis('3')"/> </td>
-
-
-<td><input type="button" value="+" onclick="dis('+')"/> </td>
-
-
-</tr>
-
-
-<tr>
-
-
-<td><input type="button" value="." onclick="dis('.')"/> </td>
-
-
-<td><input type="button" value="0" onclick="dis('0')"/> </td>
-
-
-<!-- solve function call function solve to evaluate value -->
-
-
-<td><input type="button" value="=" onclick="solve()"/> </td>
-
-
-<td><input type="button" value="-" onclick="dis('-')"/> </td>
-
-
-</tr>
-
-
-</table>
-
-
-</div>
-
-
-<div class="bill">
-<input type="button" value="START" onclick="shopdetails()"/> 
-<div id="print">
-<div class="firstline">
-<h2 id="shopname" align="center">Shop name</h1>
-<h3 id="address" align="center">Address</h2>
-<h4 id="phone" align="center">Phone Number</h3>
-<div align="center"><b>GSTIN</b><textarea id="gstin">0</textarea></div>
-</div>
-
-<hr>
-<div class="secondline">
-<table>
-<tr>
-
-<td>Bill Number </td>
-<td><textarea id="bn">000000</textarea></td>
-<td id="date">13/07/2000</td>
-<td id="time" onclick="printdate()">20:23:56</td>
-</tr>
-</table>
-<table>
-<hr>
-<table>
-<tr>
-<td>Customer Name </td>
-<td><textarea id="cn">Bishnu sah</textarea></td>
-</tr>
-</table>
-</div>
-
-<hr>
-<div id="thirdline">
-<table  frame="void" id="itemtable">
-<tr>
-<td> </td>
-
-<th>PARTICULARS</th>
-<th>RATE</th>
-<th>QUANTITY</th>
-<th>AMOUNT</th>
-</tr>
-<tr class="itemrow">
-<td></td>
-<td><textarea id="itemname">ITEM NAME</textarea></td>
-<td><textarea id="rate" >0</textarea></td>
-<td><textarea id="quantity" >0</textarea></td>
-<td><textarea id="amount" >0</textarea></td>
-</tr>
-
-
-
-
-
-
-
-</table>
-
-<button type="button" onclick="addarow()" autofocus>Add a row</button>
-
-
-<hr>
-</div>
-<div id="fourthline" align="right">
-<table>
-<tr >
-
-<td><button type="button" id ="print_subtotal" onclick="printamount();printsubtotal();">Subtotal</td>
-<td><textarea id="subtotal" onclick="printsubtotal()" disabled>0</textarea></td>
-</tr>
-<tr>
-<td><button type="button" id ="addgst" onclick="printsubtotal();printgst();">Add GST(%)</td>
-<td><textarea id="gstpercent" >18</textarea></td>
-
-
-<td><button type="button" disabled>GST value</td>
-<td><textarea id="gstvalue" disabled>0</textarea></td>
-</tr>
-<tr >
-<td><button type="button" id ="total" onclick="printamount();printsubtotal();printgst();printtotal();">Total</td>
-<td ><textarea id="totalvalue" disabled>0</textarea></td>
-</tr>
-</table>
-</div>
-
-<hr>
-<div align="center">
-*********THANK YOU VISIT AGIAN*********
-</div>
-<div >
-TERMS AND CONDITIONS
-</div>
-<diV>
-<textarea style="border:none">****Editable****</textarea>
-</div>
-</div>
-<div>
-<input type="button" value="PRINT BILL" onclick="printbill()" />
-</div>
-</div>
-
-
-<div class="additemhtml">
-
-
-
-<input type="button" value="ADD ITEM" onclick="additem()" />
-
-
-</div>
+      <hr>
+      <div align="center">
+        *********THANK YOU VISIT AGAIN*********
+      </div>
+      <div>
+        TERMS AND CONDITIONS
+      </div>
+      <div>
+        <textarea style="border:none">****Editable****</textarea>
+      </div>
+    </div>
+    <div>
+      <input type="button" value="PRINT BILL" onclick="printamount();printsubtotal();printgst();printtotal();printbill()" />
+    </div>
+  </div>
+
+  
 </body>
 
 </html>
-
-
