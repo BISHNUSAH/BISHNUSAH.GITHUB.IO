@@ -105,7 +105,7 @@
 button.innerHTML = itemname;
 
 // 2. Append somewhere
-var body = document.getElementsByClassName("additemhtml")[0];
+var body = document.getElementById("itembuttons");
 body.appendChild(button);
 
 // 3. Add event handler
@@ -192,9 +192,9 @@ button.addEventListener ("click", function() {
 
 <style>
   .title {
-    margin-bottom: 20px;
+    
     text-align: center;
-    width: 212px;
+    
     color: Black;
     border: solid black 2px;
   }
@@ -207,6 +207,11 @@ button.addEventListener ("click", function() {
 
   .calculator {
     float: left;
+    padding:20px;
+    
+  }
+ .additemhtml{
+  padding:20px
   }
 
   .bill {
@@ -246,85 +251,7 @@ button.addEventListener ("click", function() {
     <marquee bgcolor="honeydew">This project is made by BISHNU, MANJIT, RISHIKESH, SAPTARSHI, SHWETANK. CONTACT US:-softbillhelp@gmail.com</marquee>
   </div>
   
-  <div class="calculator">
-
-    <div class=title><b> CALCULATOR </b></div>
-
-    <table border="1">
-
-      <tr>
-
-        <td colspan="3"><input type="text" id="result" /></td>
-
-        <!-- clr() function will call clr to clear RESULT -->
-
-        <td><input type="button" value="c" onclick="clr()" /> </td>
-
-      </tr>
-
-      <tr>
-
-        <!-- create button -->
-
-        <!-- dis("1") will call function dis to display value -->
-
-        <td><input type="button" value="7" onclick="dis('7')" /> </td>
-
-        <td><input type="button" value="8" onclick="dis('8')" /> </td>
-
-        <td><input type="button" value="9" onclick="dis('9')" /> </td>
-
-        <td><input type="button" value="/" onclick="dis('/')" /> </td>
-
-      </tr>
-
-      <tr>
-
-        <td><input type="button" value="4" onclick="dis('4')" /> </td>
-
-        <td><input type="button" value="5" onclick="dis('5')" /> </td>
-
-        <td><input type="button" value="6" onclick="dis('6')" /> </td>
-
-        <td><input type="button" value="*" onclick="dis('*')" /> </td>
-
-      </tr>
-
-      <tr>
-
-        <td><input type="button" value="1" onclick="dis('1')" /> </td>
-
-        <td><input type="button" value="2" onclick="dis('2')" /> </td>
-
-        <td><input type="button" value="3" onclick="dis('3')" /> </td>
-
-        <td><input type="button" value="+" onclick="dis('+')" /> </td>
-
-      </tr>
-
-      <tr>
-
-        <td><input type="button" value="." onclick="dis('.')" /> </td>
-
-        <td><input type="button" value="0" onclick="dis('0')" /> </td>
-
-        <!-- solve function call function solve to evaluate value -->
-
-        <td><input type="button" value="=" onclick="solve()" /> </td>
-
-        <td><input type="button" value="-" onclick="dis('-')" /> </td>
-
-      </tr>
-
-    </table>
-
   
-  <div class="additemhtml">
-
-    <input type="button" value="ADD ITEM" onclick="additem()" />
-
-  </div>
-  </div>
   <div class="bill">
     <input type="button" value="START" onclick="shopdetails()" />
     <div id="print">
@@ -422,7 +349,87 @@ button.addEventListener ("click", function() {
       <input type="button" value="PRINT BILL" onclick="printamount();printsubtotal();printgst();printtotal();printbill()" />
     </div>
   </div>
+<div class="calculator">
+   
 
+    
+
+    <table border="1">
+      <caption><b>CALCULATOR</b></caption>
+      <tr>
+
+        <td colspan="3"><input type="text" id="result" /></td>
+
+        <!-- clr() function will call clr to clear RESULT -->
+
+        <td><input type="button" value="c" onclick="clr()" /> </td>
+
+      </tr>
+
+      <tr>
+
+        <!-- create button -->
+
+        <!-- dis("1") will call function dis to display value -->
+
+        <td><input type="button" value="7" onclick="dis('7')" /> </td>
+
+        <td><input type="button" value="8" onclick="dis('8')" /> </td>
+
+        <td><input type="button" value="9" onclick="dis('9')" /> </td>
+
+        <td><input type="button" value="/" onclick="dis('/')" /> </td>
+
+      </tr>
+
+      <tr>
+
+        <td><input type="button" value="4" onclick="dis('4')" /> </td>
+
+        <td><input type="button" value="5" onclick="dis('5')" /> </td>
+
+        <td><input type="button" value="6" onclick="dis('6')" /> </td>
+
+        <td><input type="button" value="*" onclick="dis('*')" /> </td>
+
+      </tr>
+
+      <tr>
+
+        <td><input type="button" value="1" onclick="dis('1')" /> </td>
+
+        <td><input type="button" value="2" onclick="dis('2')" /> </td>
+
+        <td><input type="button" value="3" onclick="dis('3')" /> </td>
+
+        <td><input type="button" value="+" onclick="dis('+')" /> </td>
+
+      </tr>
+
+      <tr>
+
+        <td><input type="button" value="." onclick="dis('.')" /> </td>
+
+        <td><input type="button" value="0" onclick="dis('0')" /> </td>
+
+        <!-- solve function call function solve to evaluate value -->
+
+        <td><input type="button" value="=" onclick="solve()" /> </td>
+
+        <td><input type="button" value="-" onclick="dis('-')" /> </td>
+
+      </tr>
+
+    </table>
+
+  
+  <div class="additemhtml">
+
+    <input type="button" value="ADD ITEM" onclick="additem()" />
+   <div id="itembuttons"></div>
+
+  </div>
+  </div>
   
 </body>
 
