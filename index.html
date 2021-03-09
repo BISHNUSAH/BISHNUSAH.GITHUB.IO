@@ -12,7 +12,7 @@
   var shopname;
   var address;
   var phone;
-  
+  var i=0;
   
   function printdate() {
     var today = new Date();
@@ -101,17 +101,18 @@
     itemname = prompt('Enter item name ');
     rate = prompt('Enter rate ');
     // 1. Create the button
+var divb=document.createElement("div");
    var button = document.createElement("button");
 button.innerHTML = itemname;
+divb.appendChild(button);
 
-// 2. Append somewhere
 var body = document.getElementById("itembuttons");
-body.appendChild(button);
 
-// 3. Add event handler
+body.appendChild(divb);
+
+// 2. Add event handler
 button.addEventListener ("click", function() {
-  alert("did something");
-});
+  alert(" Item name:- "+itemname+"\n Rate:- "+rate);});
     
   }
 
@@ -182,8 +183,10 @@ button.addEventListener ("click", function() {
   
   
    w.print();w.close();
-   
+   i=Number(document.getElementById("bn").value);i=i+1;
   document.getElementById("update").innerHTML=orgdivcontents;
+
+  document.getElementById("bn").value=i;
   deleteallrow();
   }
 </script>
@@ -253,7 +256,7 @@ button.addEventListener ("click", function() {
   
   
   <div class="bill">
-    <input type="button" value="START" onclick="shopdetails()" />
+    <input type="button" value="START" onclick="shopdetails()" autofocus />
     <div id="print">
       <div class="firstline">
         <h2 id="shopname" align="center">Shop name</h1>
@@ -264,7 +267,7 @@ button.addEventListener ("click", function() {
            <label for="gstin"><b>GSTIN</b></label>
             <textarea id="gstin">0</textarea></div>
       </div>
-<div id='update'>
+    <div id='update'>
       <hr>
       <div class="secondline">
         <table>
@@ -272,7 +275,7 @@ button.addEventListener ("click", function() {
 
             <td>Bill Number </td>
             <td><textarea id="bn">000000</textarea></td>
-            <td id="date">13/07/2000</td>
+            <td id="date" >13/07/2000</td>
             <td id="time" onclick="printdate()">20:23:56</td>
           </tr>
         </table>
@@ -430,7 +433,9 @@ button.addEventListener ("click", function() {
 
   </div>
   </div>
-  
+</div>
+<img src="1i.png" alt="image" width="30%" height="auto">
+</div>
 </body>
 
 </html>
